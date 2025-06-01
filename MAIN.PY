@@ -1,3 +1,6 @@
+from PRODUCT import Product
+from CART import Cart
+
 # Inventory: All available products
 inventory = {
     "Milk": Product("Milk", 3.00, "Dairy"),
@@ -25,3 +28,7 @@ inventory = {
     "Chocolate": Product("Chocolate", 1.80, "Snacks"),
     "Nuts": Product("Nuts", 3.50, "Snacks")
 }
+
+#Placeholder for main menu logic
+#To be completed
+#This is the driver file for running the program
