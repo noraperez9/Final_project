@@ -1,34 +1,41 @@
-from PRODUCT import Product
-from CART import Cart
+class Cart:
+    def __init__(self):
+        self.items = {}  # product name → quantity
+    #Initializes an empty shopping cart
+    #Item: product name(str), quantity(int)
 
-# Inventory: All available products
-inventory = {
-    "Milk": Product("Milk", 3.00, "Dairy"),
-    "Cheese": Product("Cheese", 4.50, "Dairy"),
-    "Yogurt": Product("Yogurt", 1.20, "Dairy"),
-    "Butter": Product("Butter", 2.80, "Dairy"),
+    def add_item(self, name):
+        # Adds 1 of the given product to the cart
+        #Parameters: Name(srt): the name of product to add
+        #Returns - none
+        if name in self.items:
+            self.items[name] += 1
+        else:
+            self.items[name] = 1
 
-    "Apples": Product("Apples", 0.99, "Fruit"),
-    "Bananas": Product("Bananas", 0.50, "Fruit"),
-    "Oranges": Product("Oranges", 1.10, "Fruit"),
-    "Strawberries": Product("Strawberries", 3.00, "Fruit"),
+    def get_total(self, inventory):
+        # Calculates total price
+        #Parameter: inventory(dict): product name(str) -> product object
+        #Returns: Float, total price of the cart
+        total = 0
+        for name in self.items:
+            quantity = self.items[name]
+            price = inventory[name].price
+            total += price * quantity
+        return total
 
-    "Bread": Product("Bread", 2.50, "Bakery"),
-    "Bagels": Product("Bagels", 2.80, "Bakery"),
-    "Croissant": Product("Croissant", 1.50, "Bakery"),
-    "Donut": Product("Donut", 1.20, "Bakery"),
+    def get_receipt_lines(self, inventory):
+        # Creates a list of strings representing the receipt
+        #Parameters: Inventory(dict): Product name(str) -> Product object
+        #Returns: list of str representing the receipt lines
+        lines = []
+        total = 0
+        for name in self.items:
+            quantity = self.items[name]
+            price = inventory[name].price
+            subtotal = price * quantity
+            total += subtotal
+            lines.append(name + " x" + str(quantity) + " = $" + str(subtotal))
+        lines.append("Total = $" + str(total))
+        return lines
 
-    "Water": Product("Water", 1.00, "Beverages"),
-    "Soda": Product("Soda", 1.30, "Beverages"),
-    "Juice": Product("Juice", 2.00, "Beverages"),
-    "Coffee": Product("Coffee", 4.00, "Beverages"),
-
-    "Chips": Product("Chips", 1.70, "Snacks"),
-    "Cookies": Product("Cookies", 2.20, "Snacks"),
-    "Chocolate": Product("Chocolate", 1.80, "Snacks"),
-    "Nuts": Product("Nuts", 3.50, "Snacks")
-}
-
-#Placeholder for main menu logic
-#To be completed
-#This is the driver file for running the program
