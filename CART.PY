@@ -1,4 +1,7 @@
+#cart.py
+#Author: Samantha Lin and Nora Perez  
 class Cart:
+    # Represents a shopping cart that tracks items added by the user.
     def __init__(self):
         self.items = {}  # product name → quantity
     #Initializes an empty shopping cart
@@ -38,4 +41,3 @@ class Cart:
             lines.append(name + " x" + str(quantity) + " = $" + str(subtotal))
         lines.append("Total = $" + str(total))
         return lines
-
